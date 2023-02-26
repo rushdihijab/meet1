@@ -1,9 +1,38 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+
 class Event extends Component {
+    state = {
+        showDetails: false
+    }
+
+    handleShowDetails = () => {
+        this.setState({
+            showDetails: !this.state.showDetails
+        });
+    }
+
     render() {
-        return
-        <div></div>
+        const { event } = this.props;
+        const { showDetails } = this.state;
+
+        return (
+            <div className="event">
+                <div className="event-info">
+                    <div className="event-summary">{event.summary}</div>
+                    <div className="event-date">{event.start}</div>
+                    <div className="event-location">{event.location}</div>
+                </div>
+                {showDetails && (
+                    <div className="event-details">
+                        <div className="event-description">{event.description}</div>
+                    </div>
+                )}
+                <button className="show-details-btn" onClick={this.handleShowDetails}>
+                    {showDetails ? 'Hide Details' : 'Show Details'}
+                </button>
+            </div>
+        );
     }
 }
-export default Event;
 
+export default Event;
