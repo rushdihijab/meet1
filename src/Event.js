@@ -19,7 +19,7 @@ class Event extends Component {
             <div className="event">
                 <div className="event-info">
                     <div className="event-summary">{event.summary}</div>
-                    <div className="event-date">{event.start}</div>
+                    <div className="event-date"> {new Date(event.start.dateTime).toString()} {new Date(event.start.dateTime).toString()}</div>
                     <div className="event-location">{event.location}</div>
                 </div>
                 {showDetails && (
