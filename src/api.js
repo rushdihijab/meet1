@@ -14,6 +14,7 @@ export const checkToken = async (accessToken) => {
     )
         .then((res) => res.json())
         .catch((error) => error.json());
+    console.log(result);
 
     return result;
 };
@@ -43,7 +44,7 @@ const getToken = async (code) => {
             return res.json();
         })
         .catch((error) => error);
-
+    console.log(access_token);
     access_token && localStorage.setItem("access_token", access_token);
 
     return access_token;
@@ -75,6 +76,7 @@ export const getEvents = async () => {
             "https://r14q868nt1.execute-api.us-east-1.amazonaws.com/dev/api/get-events" +
             "/" +
             token;
+        console.log(url);
         const result = await axios.get(url);
         if (result.data) {
             var locations = extractLocations(result.data.events);
