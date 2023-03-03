@@ -58,3 +58,8 @@
 .show-details-btn:hover {
   background-color: #eee;
 }
+
+ul {
+  padding: 0;
+  list-style: none;
+}
