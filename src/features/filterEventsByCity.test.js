@@ -10,9 +10,7 @@ const feature = loadFeature('./src/features/filterEventsByCity.feature');
 
 defineFeature(feature, test => {
     test('When user hasn’t searched for a city, show upcoming events from all cities.', ({ given, when, then }) => {
-      given('user hasn’t searched for any city', () => {
-
-      });
+      given('user hasn’t searched for any city', () => {});
 
       let AppWrapper;
       when('the user opens the app', () => {
@@ -21,7 +19,7 @@ defineFeature(feature, test => {
       });
   
       then('the user should see the list of upcoming events.', () => {
-        AppWrapper.update();
+      AppWrapper.update();
       expect(AppWrapper.find('.event')).toHaveLength(mockData.length);
       });
     });
