@@ -12,12 +12,12 @@ class NumberOfEvents extends Component {
         if (value < 1) {
             this.setState({
                 errorText: 'Select number from 1 to 32',
-                numberOfEvents: 1,
+                numberOfEvents: 0,
             });
         } else if (value > 32) {
             this.setState({
                 errorText: 'Select number from 1 to 32',
-                numberOfEvents: 32,
+                numberOfEvents: value,
             });
         } else {
             this.setState({
