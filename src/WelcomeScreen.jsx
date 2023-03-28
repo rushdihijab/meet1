@@ -28,7 +28,7 @@ class="btn-text"
 </button></div>
 </div>
 <a
-href="https://rushdihijab.github.io/meet/privacy.html"
+href="https://rushdihijab.github.io/meet1/privacy.html"
 rel="nofollow noopener"
 >
 Privacy policy
