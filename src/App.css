@@ -5,6 +5,9 @@
   font-family: Arial, sans-serif;
   padding: 20px;
   }
+  .data-vis-wrapper {
+    width: 100vw;
+    }
   
   .event {
   border: 1px solid #ccc;
