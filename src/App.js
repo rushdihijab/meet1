@@ -21,23 +21,20 @@ class App extends Component {
 
   async componentDidMount() {
     this.mounted = true;
-
     const accessToken = localStorage.getItem('access_token');
-    const isTokenValid = (await checkToken(accessToken)).error ? false : true;
+    const isTokenValid = (await checkToken(accessToken)).error ? false :
+    true;
     const searchParams = new URLSearchParams(window.location.search);
-    const code = searchParams.get('code');
-    const isLocal = window.location.href.startsWith('http://localhost')
-      ? true
-      : code || isTokenValid;
-    this.setState({ showWelcomeScreen: !isLocal });
-    if (isLocal && this.mounted) {
-      getEvents().then((events) => {
-        if (this.mounted) {
-          this.setState({ events, locations: extractLocations(events) });
-        }
-      });
+    const code = searchParams.get("code");
+    this.setState({ showWelcomeScreen: !(code || isTokenValid) });
+    if ((code || isTokenValid) && this.mounted) {
+    getEvents().then((events) => {
+    if (this.mounted) {
+    this.setState({ events, locations: extractLocations(events) });
     }
-  }
+    });
+    }
+    }
 
   componentWillUnmount() {
     this.mounted = false;
@@ -63,8 +60,10 @@ class App extends Component {
     const data = locations.map((location)=>{
       const number = events.filter((event) => event.location === location).length
       const city = location.split(', ').shift()
+      console.log(`City: ${city}, Number of Events: ${number}`);
       return {city, number};
     })
+    console.log(data);
     return data;
   };
 
