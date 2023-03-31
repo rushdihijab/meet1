@@ -27,13 +27,13 @@ class App extends Component {
     const searchParams = new URLSearchParams(window.location.search);
     const code = searchParams.get("code");
     this.setState({ showWelcomeScreen: !(code || isTokenValid) });
-    if ((code || isTokenValid) && this.mounted) {
+    // if ((code || isTokenValid) && this.mounted) {
     getEvents().then((events) => {
     if (this.mounted) {
     this.setState({ events, locations: extractLocations(events) });
     }
     });
-    }
+    // }
     }
   componentWillUnmount() {
     this.mounted = false;
