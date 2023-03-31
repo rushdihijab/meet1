@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { PieChart, Pie, Cell, ResponsiveContainer, Legend} from 'recharts';
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts';
+
 
 
 const EventGenre = ({ events }) => {
@@ -33,7 +34,7 @@ const EventGenre = ({ events }) => {
                         `${(percent * 100).toFixed(0)}%`
                     }
                 >
-                    {data.map((entry, index) => (
+                    {data.map((index) => (
                         <Cell key={`cell-${index}`} fill={colors[index]} />
                     ))}
                 </Pie>
