@@ -65,8 +65,9 @@ class App extends Component {
   };
 
   render() {
+    const { events } = this.state;
 
-    if (this.state.showWelcomeScreen === undefined) return <hi>hi</hi>
+    if (this.state.showWelcomeScreen === undefined) return <h1>hi</h1>
   
     return (
       <div className="App">
@@ -77,11 +78,9 @@ class App extends Component {
           numberOfEvents={this.state.numberOfEvents}
           updateNumEvents={this.updateNumEvents}
         />
-
         <h4>Events in each city</h4>
-
         <div className="data-vis-wrapper">
-          <EventGenre events={this.state.events} />
+          <EventGenre events={events} />
           <ResponsiveContainer height={400}>
             <ScatterChart
               margin={{
@@ -105,7 +104,7 @@ class App extends Component {
           </ResponsiveContainer>
         </div>
          <EventList
-          events={this.state.events.slice(0, this.state.numberOfEvents)}
+          events={events.slice(0, this.state.numberOfEvents)}
         />
          <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen}
           getAccessToken={() => { getAccessToken() }} />
