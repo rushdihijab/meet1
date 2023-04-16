@@ -13,9 +13,11 @@ class CitySearch extends Component {
         const suggestions = this.props.locations.filter((location) => {
             return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
         });
+  
         if (suggestions.length === 0) {
             this.setState({
-              query: value,
+                query: value,
+                suggestions,
               infoText: 'We can not find the city you are looking for. Please try another city',
             });
           } else {
@@ -57,7 +59,7 @@ class CitySearch extends Component {
                             onClick={() => this.handleItemClicked(suggestion)}
                         >{suggestion}</li>
                     ))}
-                    <li  onClick={() => this.handleItemClicked("all")}>
+                    <li  key="all" onClick={() => this.handleItemClicked("all")}>
                         <b>See all cities</b>
                     </li>
                 </ul>
