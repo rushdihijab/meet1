@@ -91,9 +91,9 @@
 >**Feature: DATA VISUALIZATION**
 >
 	>Scenario 1: Show a chart with the number of upcoming events in each city
-	>Given the list of events is open
-	>When the user views the event data visualization
-	>Then a chart should be displayed showing the number of upcoming events in each city
+		>Given the list of events is open
+		>When the user views the event data visualization
+		>Then a chart should be displayed showing the number of upcoming events in each city
 	>
 >**Serverless Function**
 >
