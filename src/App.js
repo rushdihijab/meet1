@@ -16,6 +16,7 @@ class App extends Component {
     events: [],
     locations: [],
     numberOfEvents: 32,
+    selectedLocation: 'all',
     showWelcomeScreen: undefined,
   }
 
@@ -40,9 +41,10 @@ class App extends Component {
     this.mounted = false;
   }
   updateEvents = (location) => {
+    if (location === undefined) location = this.state.selectedLocation;
     getEvents().then((events) => {
       const locationEvents =
-        location === 'all'
+      location=== "all"
           ? events
           : events.filter((event) => event.location === location);
       this.setState({
