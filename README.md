@@ -1,58 +1,86 @@
 Meet1
-Meet1 is an app that allows users to view upcoming events by city, ensuring that they never miss a concert again. The key features of the app include:
+Objective: To build a serverless, progressive web application (PWA) with React using a
+test-driven development (TDD) technique. The application uses the Google
+Calendar API to fetch upcoming events.
 
-Filtering events by city
-Showing/hiding event details
-Specifying the number of events to display
-Using the app when offline
-Adding an app shortcut to the home screen
-Viewing a chart showing the number of upcoming events by city
-User Stories
-Feature 1: Event Filtering
-Scenario 1: Show upcoming events from all cities
-Given the user hasn’t searched for any city, when the user views the list of events, then the user should see all upcoming events.
+- Frontend: Written with JavaScript/React; hosted on GitHub Pages.
+- Backend (Server Logic): Written with Node/Express as Lambda functions (FaaS); hosted on AWS (requests come from frontend to Lambda function to data).
+- Backend (Database): Google Calendar API.
 
-Scenario 2: User should see a list of suggestions when they search for a city
-Given the main page is open, when the user starts typing in the city text box, then the user should see a list of cities that match their search.
+Meet-App Scenarios
 
-Scenario 3: User can select a city from the suggested list
-Given the user was typing "Berlin" in the city text box and the list of suggested cities is showing, when the user selects a city from the list, then their city should be set to "Berlin".
+Feature 1: Filter Events by City
 
-Feature 2: Show/Hide an Event's Details
-Scenario 1: An event element is collapsed by default
-Given the list of events is open, when the user views the events, then each event element should be collapsed.
+	User story: As a user, I want to be able to filter events by city so that I can see upcoming events in that city.
 
-Scenario 2: User can expand an event to see its details
-Given the list of events is open, when the user clicks on an event, then the event details should be displayed.
+	Scenario 1: When user hasn’t selected a city, show upcoming events from all cities.
+		Given the app is loaded,
+		When user hasn’t selected a city,
+		Then the user should see a list of all upcoming events.
 
-Scenario 3: User can collapse an event to hide its details
-Given the event details are displayed, when the user clicks on the event again, then the event details should be hidden.
+	Scenario 2: User should see list of suggestions when searching for a city.
+		Given the main page is open with the list of events in all cities,
+		When user starts typing city name in text box,
+		Then the user should see a list of suggested cities based on their input.
+	
+	Scenario 3: When the user searches for a city, a list of events for this city should be shown.
+		Given the user was typing “Spokane” in the text box, and a list of suggested cities is showing,
+		When the user selects a city (Spokane, WA, USA) for the list of suggested cities,
+		Then the user city should be changed to the selected city and the user should receive a list of upcoming events in that city.
+
+Feature 2: Show/Hide Event Details
+
+	User Story: As a user, I want to be able to show and hide event details so that I can see more or less information about an event.
+
+	Scenario 1: An event element is collapsed by default.
+		Given the app is loaded,
+		When the user has received a list of upcoming events in specified city (or all cities),
+		Then event details are not yet visible for user.
+
+	Scenario 2: User can expand an event to see its details.
+		Given user received general info about upcoming events,
+		When user pushes button “Details” for specific event,
+		Then specific event is expanded with details.
+
+	Scenario 3: User can collapse an event to hide its details.
+		Given specific event is expanded with details,
+		When user pushes the button “Back” for specific event,
+		Then specific event is collapsed, details are hidden, and user receives list of upcoming events with general info only.
 
 Feature 3: Specify Number of Events
-Scenario 1: When user hasn’t specified a number, 32 is the default number
-Given the list of events is open and the user hasn't specified the number of events to display, when the list of events is loaded, then the default number of events to display should be 32.
 
-Scenario 2: User can change the number of events they want to see
-Given the list of events is open, when the user changes the number of events to display, then the number of events displayed should change accordingly.
+	User story: As a user, I want to be able to specify the number of events displayed in the app so that I can view more or fewer events at one time.
 
-Feature 4: Use the App When Offline
-Scenario 1: Show Cached Data When There’s No Internet Connection
-Given the user has loaded the app before and is offline, when the user views the app, then the app should show the cached data.
+	Scenario 1: When user has not specified a number, 32 is the default number.
+		Given the app is loaded, user has received a list of upcoming events in specified city (or all cities),
+		When user has not specified a number of events to be shown,
+		Then user receives first 32 upcoming events on screen.
 
-Scenario 2: Show Error When User Changes the Settings (City, Time Range)
-Given the user is offline, when the user changes the city or time range, then the app should show an error message.
+	Scenario 2: User can change number of events they want to see.
+		Given app is loaded, user has received a list of upcoming events in specified city ( or all cities),
+		When user hasn’t specified a number of events to be shown by choosing the number in input (can be 32, 64, 			or 96),
+		Then user receives chosen number of upcoming events (32, 64, or 96).
+
+Feature 4: Use App When Offline
+
+	User story: As a user, I want to be able to use the app when offline so that I can see the events I viewed last time I was online.
+
+	Scenario 1: Show cached data when there’s no internet connection.
+		Given user has previously opened app with an available internet connection,
+		When user opens app without internet connection,
+		Then user receives cached data from their last session.
+
+	Scenario 2: Show error when user changes settings (city, time range)
+		Given user has opened app without internet connection and received cached data from their last session,
+		When user changes settings (city, time range),
+		Then user receives error message stating that data is not available without internet connection.
 
 Feature 5: Data Visualization
-Scenario 1: Show a Chart with the Number of Upcoming Events in Each City
-Given the list of events is open, when the user views the event data visualization, then a chart should be displayed showing the number of upcoming events in each city.
 
-Serverless Functions
-To handle the integration with the Google Calendar API, a serverless function could be triggered when a user searches for events in a specific city or requests to see event details. The serverless function could then fetch the relevant data from the Google Calendar API and return it to the user.
+	User story: As a user, I want to be able to see a chart showing upcoming events in each city, so that I know what events are organized in which city.
 
-When a user types a city into the search box, the serverless function could be triggered to fetch only events in that city and return them to the user.
-
-For offline data storage, a serverless function could store event data in a database when the user is online. This way, when the user goes offline, the app can still display cached event data without needing to fetch new data from the API.
-
-To handle errors that occur when the user is offline or when there is an error fetching data from the API, a serverless function could display an error message and allow the user to retry their action or try again later.
-
-Finally, a serverless function could be used to generate a chart showing the number of upcoming events in each city. The function could fetch the relevant data from the API and then use a library like D3.js to generate the chart, which would be displayed to the user.
+	Scenario 1: Show a chart with the number of upcoming events in each city.
+		Given the app is loaded, user has received a list of upcoming events in specified city (or all cities),
+		When user pushes button “Visualize”,
+		Then they will see a chart showing the number of upcoming events in that city, categorized by type.
+Footer
