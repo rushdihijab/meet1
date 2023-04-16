@@ -85,4 +85,3 @@ Feature 5: Data Visualization
 		Given the app is loaded, user has received a list of upcoming events in specified city (or all cities),
 		When user pushes button “Visualize”,
 		Then they will see a chart showing the number of upcoming events in that city, categorized by type.
-Footer
