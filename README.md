@@ -4,19 +4,22 @@
 **Objective:**
 >To build a serverless, progressive web application (PWA) with React using a test-driven development (TDD) technique. The application uses the Google Calendar API to fetch upcoming events.
 
-- Frontend: Written with JavaScript/React; hosted on GitHub Pages.
-- Backend (Server Logic): Written with Node/Express as Lambda functions (FaaS); hosted on AWS (requests come from frontend to Lambda function to data).
-- Backend (Database): Google Calendar API.
+_Frontend: Written with JavaScript/React; hosted on GitHub Pages.
+Backend (Server Logic): Written with Node/Express as Lambda functions (FaaS); hosted on AWS (requests come from frontend to Lambda function to data).
+Backend (Database): Google Calendar API.
+_
 
--Key Features
-.Filter events by city
+
+**Key Features
+_.Filter events by city
 .Show/hide event details
 .Specify number of events
 .Use the app when offline
 .Add an app shortcut to the home screen
-.View a chart showing the number of upcoming events by city
--User Stories
-.Feature 1: EVENT FILTERING
+.View a chart showing the number of upcoming events by city_**
+
+**User Stories**
+_.Feature 1: EVENT FILTERING
 	Scenario 1: Show upcoming events from all cities
 		Given the user hasn’t searched for any city
 		When the user views the list of events
@@ -72,3 +75,4 @@ When a user types a city into the search box, the serverless function could be t
 For offline data storage, a serverless function could store event data in a database when the user is online. This way, when the user goes offline, the app can still display cached event data without needing to fetch new data from the API.
 To handle errors that occur when the user is offline or when there is an error fetching data from the API, a serverless function could display an error message and allow the user to retry their action or try again later.
 Finally, a serverless function could be used to generate a chart showing the number of upcoming events in each city. 
+_
